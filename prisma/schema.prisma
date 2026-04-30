@@ -1,0 +1,105 @@
+// Prisma schema para el Sistema de Gestión de Eventos
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Sede ────────────────────────────────────────────────────────────────
+model Sede {
+  id        Int      @id @default(autoincrement())
+  nombre    String   @db.VarChar(200)
+  direccion String   @db.VarChar(500)
+  capacidad Int
+
+  eventos Evento[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("sedes")
+}
+
+// ── Evento ──────────────────────────────────────────────────────────────
+model Evento {
+  id          Int      @id @default(autoincrement())
+  nombre      String   @db.VarChar(300)
+  descripcion String?  @db.Text
+  fechaInicio DateTime @map("fecha_inicio")
+  fechaFin    DateTime @map("fecha_fin")
+
+  sedeId Int  @map("id_sede")
+  sede   Sede @relation(fields: [sedeId], references: [id])
+
+  asistentes    EventoAsistente[]
+  patrocinadores EventoPatrocinador[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("eventos")
+}
+
+// ── Asistente ───────────────────────────────────────────────────────────
+model Asistente {
+  id       Int     @id @default(autoincrement())
+  nombre   String  @db.VarChar(150)
+  apellido String  @db.VarChar(150)
+  email    String  @unique @db.VarChar(300)
+  telefono String? @db.VarChar(20)
+
+  eventos EventoAsistente[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("asistentes")
+}
+
+// ── Patrocinador ────────────────────────────────────────────────────────
+model Patrocinador {
+  id       Int     @id @default(autoincrement())
+  nombre   String  @db.VarChar(200)
+  email    String  @unique @db.VarChar(300)
+  telefono String? @db.VarChar(20)
+
+  eventos EventoPatrocinador[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("patrocinadores")
+}
+
+// ── Tabla pivote: Evento ↔ Asistente (muchos a muchos) ──────────────────
+model EventoAsistente {
+  eventoId    Int @map("evento_id")
+  asistenteId Int @map("asistente_id")
+
+  evento    Evento    @relation(fields: [eventoId], references: [id], onDelete: Cascade)
+  asistente Asistente @relation(fields: [asistenteId], references: [id], onDelete: Cascade)
+
+  fechaRegistro DateTime @default(now()) @map("fecha_registro")
+
+  @@id([eventoId, asistenteId])
+  @@map("evento_asistente")
+}
+
+// ── Tabla pivote: Evento ↔ Patrocinador (muchos a muchos con monto) ─────
+model EventoPatrocinador {
+  eventoId       Int   @map("evento_id")
+  patrocinadorId Int   @map("patrocinador_id")
+  montoPatrocinio Float @map("monto_patrocinio")
+
+  evento       Evento       @relation(fields: [eventoId], references: [id], onDelete: Cascade)
+  patrocinador Patrocinador @relation(fields: [patrocinadorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@id([eventoId, patrocinadorId])
+  @@map("evento_patrocinador")
+}

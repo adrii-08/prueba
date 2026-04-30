@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "event-manager",
   "private": true,
   "version": "1.0.0",
@@ -22,4 +23,25 @@
     "tailwindcss": "^3.4.14",
     "vite": "^5.4.9"
   }
+=======
+  "name": "event-management-api",
+  "version": "1.0.0",
+  "description": "Sistema de gestión de eventos con Node.js, Express, PostgreSQL y Prisma",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "node --watch src/app.js",
+    "start": "node src/app.js",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:seed": "node prisma/seed.js",
+    "prisma:studio": "npx prisma studio",
+    "setup": "npx prisma generate && npx prisma migrate dev --name init && node prisma/seed.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "keywords": ["eventos", "express", "prisma", "postgresql"],
+  "author": "",
+  "license": "ISC"
+>>>>>>> 608cf5728e263bbdac3063d13d212a661dd6399d
 }
