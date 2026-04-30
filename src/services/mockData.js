@@ -1,0 +1,150 @@
+// Mock data para trabajar sin backend conectado.
+// El hook useApi probará primero la API real; si falla, usará estos datos.
+
+export const mockEvents = [
+  {
+    id: 1,
+    name: 'Conferencia de Innovación Tecnológica',
+    description: 'Encuentro anual de líderes en tecnología y transformación digital.',
+    date: '2026-06-12',
+    time: '09:00',
+    capacity: 450,
+    status: 'published',
+    venueId: 1,
+    category: 'Conferencia',
+  },
+  {
+    id: 2,
+    name: 'Festival Gastronómico de Otoño',
+    description: 'Una celebración de los sabores locales con chefs reconocidos.',
+    date: '2026-05-20',
+    time: '17:30',
+    capacity: 200,
+    status: 'draft',
+    venueId: 2,
+    category: 'Festival',
+  },
+  {
+    id: 3,
+    name: 'Cumbre de Diseño Editorial',
+    description: 'Talleres y charlas sobre tipografía, layout y dirección de arte.',
+    date: '2026-07-08',
+    time: '10:00',
+    capacity: 120,
+    status: 'published',
+    venueId: 3,
+    category: 'Workshop',
+  },
+  {
+    id: 4,
+    name: 'Gala Benéfica Anual',
+    description: 'Cena de gala con subasta silenciosa para causas sociales.',
+    date: '2026-09-15',
+    time: '20:00',
+    capacity: 300,
+    status: 'published',
+    venueId: 1,
+    category: 'Gala',
+  },
+];
+
+export const mockVenues = [
+  {
+    id: 1,
+    name: 'Centro de Convenciones Atelier',
+    address: 'Av. del Lago 1284, Centro',
+    city: 'Asunción',
+    capacity: 800,
+    type: 'Convenciones',
+  },
+  {
+    id: 2,
+    name: 'Jardín Botánico Nacional',
+    address: 'Calle Botánica 45',
+    city: 'San Lorenzo',
+    capacity: 300,
+    type: 'Aire libre',
+  },
+  {
+    id: 3,
+    name: 'Sala Boreal',
+    address: 'Plaza de las Artes 12',
+    city: 'Ciudad del Este',
+    capacity: 180,
+    type: 'Auditorio',
+  },
+];
+
+export const mockAttendees = [
+  {
+    id: 1,
+    name: 'Mariana Sosa',
+    email: 'mariana.sosa@correo.com',
+    phone: '+595 981 234 567',
+    eventId: 1,
+    ticketType: 'VIP',
+    registeredAt: '2026-04-02',
+  },
+  {
+    id: 2,
+    name: 'Rodrigo Ayala',
+    email: 'r.ayala@correo.com',
+    phone: '+595 982 111 333',
+    eventId: 1,
+    ticketType: 'General',
+    registeredAt: '2026-04-05',
+  },
+  {
+    id: 3,
+    name: 'Camila Benítez',
+    email: 'camila.b@correo.com',
+    phone: '+595 983 555 222',
+    eventId: 2,
+    ticketType: 'General',
+    registeredAt: '2026-04-08',
+  },
+  {
+    id: 4,
+    name: 'Lucas Fernández',
+    email: 'lucas.f@correo.com',
+    phone: '+595 984 777 888',
+    eventId: 3,
+    ticketType: 'Estudiante',
+    registeredAt: '2026-04-10',
+  },
+];
+
+export const mockSponsors = [
+  {
+    id: 1,
+    name: 'Helix Studios',
+    contact: 'contacto@helixstudios.com',
+    amount: 25000,
+    tier: 'Platino',
+    eventId: 1,
+  },
+  {
+    id: 2,
+    name: 'Norden Café',
+    contact: 'eventos@norden.com',
+    amount: 8000,
+    tier: 'Oro',
+    eventId: 1,
+  },
+  {
+    id: 3,
+    name: 'Lumen Editorial',
+    contact: 'hello@lumen.co',
+    amount: 4500,
+    tier: 'Plata',
+    eventId: 3,
+  },
+  {
+    id: 4,
+    name: 'Verde Origen',
+    contact: 'sponsor@verdeorigen.com',
+    amount: 12000,
+    tier: 'Oro',
+    eventId: 2,
+  },
+];

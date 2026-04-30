@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream-50 text-ink-900 font-sans;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  ::selection {
+    @apply bg-moss-300 text-cream-50;
+  }
+
+  /* Scrollbar refinado */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-cream-100;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-moss-200 rounded-full;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-moss-300;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+}
+
+@layer components {
+  .display-text {
+    @apply font-display tracking-tight;
+    font-feature-settings: 'ss01';
+  }
+
+  .label-mono {
+    @apply font-mono text-xs uppercase tracking-[0.18em] text-moss-400;
+  }
+
+  .divider-dotted {
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
+    background-position: center;
+    height: 1px;
+  }
+}
+
+/* Background pattern sutil para layouts */
+.bg-grain {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(58, 74, 48, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(139, 90, 60, 0.03) 0%, transparent 40%);
+}
